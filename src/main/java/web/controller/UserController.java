@@ -2,10 +2,7 @@ package web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import web.model.User;
 import web.service.UserService;
 
@@ -36,4 +33,25 @@ public class UserController {
         userService.saveUser(user);
         return "redirect:/users";
     }
+
+
+
+    @GetMapping("/{id}")
+    public String editUser(@PathVariable Long id , Model model){
+        model.addAttribute("user", userService.findById(id));
+        return "edit";
+    }
+
+    @PatchMapping("/{id}")
+    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") Long id){
+        userService.updateUser(user);
+        return "redirect:/users";
+    }
+
+    @GetMapping("/remove/{id}")
+    public String deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return "redirect:/users";
+    }
+
 }

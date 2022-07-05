@@ -23,10 +23,10 @@
             <td th:text="${user.name}">...</td>
             <td th:utext="${user.surname}">...</td>
             <td>
-                <button><a th:href="@{/home/{id}(id=${user.getId()})}">Edit</a></button>
+                <button><a th:href="@{/users/{id}(id=${user.getId()})}">Edit</a></button>
             </td>
             <td>
-                <button><a th:href="@{/home/remove/{id}(id=${user.id})}">Delete</a></button>
+                <button><a th:href="@{/users/remove/{id}(id=${user.id})}">Delete</a></button>
             </td>
             </td>
         </tr>
